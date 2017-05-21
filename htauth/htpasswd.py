@@ -106,12 +106,12 @@ def parse_htpasswd(fn, stop_username=None):
         entries = {}
         for line in f.readlines():
             line = line.strip()
-            if not line or line.startswith('#'):
+            if not line or line.startswith(b'#'):
                 continue
-            if ':' not in line:
+            if b':' not in line:
                 raise ValueError(
                     "Bad line (no :): %r" % line)
-            username, entry_password = line.split(':', 1)
+            username, entry_password = line.split(b':', 1)
             entries[username] = entry_password
             if username == stop_username:
                 break
